@@ -35,7 +35,7 @@ if(isset($_SESSION["userEmail"])){
                         value="<?php echo $_SESSION['userPassword']?>">
 
                 </div>
-                <button type="submit" name="updatProfile" class="btn btn-primary">sign up</button>
+                <button type="submit" name="updatProfile" class="btn btn-primary">update</button>
             </form>
         </div>
     </div>
@@ -61,7 +61,7 @@ if(isset($_POST['updatProfile'])){
           echo "<script>alert('updated data successfully');
          location.assign('login.php');
         </script>";
- 
+ unset($_SESSION["userEmail"]);
        
     
 }
