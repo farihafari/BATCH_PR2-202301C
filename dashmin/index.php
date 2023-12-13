@@ -1,8 +1,14 @@
-><?php
+<?php
 include("header.php");
-?>
+if(!isset($_SESSION['userEmail'])){
+    echo "<script>alert('invalid carderntial');
+    location.assign('signin.php')</script>";
+}
+if($_SESSION['userEmail'] && $_SESSION['userRole']=="admin"){
+    ?>
 <!-- Sale & Revenue Start -->
 <div class="container-fluid pt-4 px-4">
+    <h1>admin dashboard</h1>
     <div class="row g-4">
         <div class="col-sm-6 col-xl-3">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
@@ -70,9 +76,13 @@ include("header.php");
 </div>
 <!-- Sales Chart End -->
 
+<?php
+}else{
+    ?>
 
 <!-- Recent Sales Start -->
 <div class="container-fluid pt-4 px-4">
+    <h1>user dashboard</h1>
     <div class="bg-light text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">Recent Salse</h6>
@@ -268,6 +278,9 @@ include("header.php");
         </div>
     </div>
 </div>
+<?php
+}
+?>
 <!-- Widgets End -->
 <?php
 include("footer.php");

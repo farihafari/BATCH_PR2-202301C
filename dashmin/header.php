@@ -60,22 +60,38 @@ include("php/query.php");
                         </div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Jhon Doe</h6>
-                        <span>Admin</span>
+                        <h6 class="mb-0"><?php echo $_SESSION['userName'];?></h6>
+                        <span><?php echo $_SESSION['userRole']?></span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="index.php" class="nav-item nav-link active"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+
+
+                    <?php
+                    if($_SESSION['userRole']=="admin"){
+                        ?>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                class="fa fa-laptop me-2"></i>Elements</a>
+                                class="fa fa-laptop me-2"></i>categories</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="button.html" class="dropdown-item">Buttons</a>
-                            <a href="typography.html" class="dropdown-item">Typography</a>
-                            <a href="element.html" class="dropdown-item">Other Elements</a>
+                            <a href="addcategory.php" class="dropdown-item">add category</a>
+                            <a href="viewcategory.php" class="dropdown-item">view catgeory</a>
                         </div>
                     </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="fa fa-laptop me-2"></i>products</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="addproduct.php" class="dropdown-item">add product</a>
+                            <a href="viewcategory.php" class="dropdown-item">view product</a>
+                        </div>
+                    </div>
+                    <?php
+                    }
+                    ?>
+
                     <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
                     <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
                     <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
@@ -180,7 +196,8 @@ include("php/query.php");
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="img/user.jpg" alt=""
                                 style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">John Doe</span>
+                            <span class="d-none d-lg-inline-flex">
+                                <?php echo $_SESSION['userName']?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">My Profile</a>
