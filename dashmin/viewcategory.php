@@ -27,7 +27,7 @@ foreach($row as  $value) {
                         <a href="updatecategory.php?catId=<?php echo $value['id']?>"
                             class="btn btn-secondary m-2">edit</a>
                     </td>
-                    <td><a href="" class="btn btn-danger m-2">delete</a></td>
+                    <td><a href="?deleteCat=<?php echo $value['id']?>" class="btn btn-danger m-2">delete</a></td>
                 </tr>
 
 

@@ -85,7 +85,7 @@ include("php/query.php");
                                 class="fa fa-laptop me-2"></i>products</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="addproduct.php" class="dropdown-item">add product</a>
-                            <a href="viewcategory.php" class="dropdown-item">view product</a>
+                            <a href="viewproduct.php" class="dropdown-item">view product</a>
                         </div>
                     </div>
                     <?php

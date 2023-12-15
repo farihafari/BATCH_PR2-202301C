@@ -84,6 +84,15 @@ $catName = $_POST["catName"];
  }
  
 }
+// delete category 
+if(isset($_GET['deleteCat'])){
+  $deletId= $_GET['deleteCat'];
+  $query = $pdo ->prepare("delete from category where id =:did");
+  $query->bindParam("did",$deletId);
+  $query->execute();
+   echo "<script>alert('Delete category  successfully');
+    location.assign('viewcategory.php')</script>";
+}
 // add products
 if(isset($_POST['addProduct'])){
   $proName = $_POST["proName"];
@@ -106,5 +115,48 @@ if(isset($_POST['addProduct'])){
     echo "<script>alert('product added successfully')</script>";
   }
 }
+}
+// update product
+if(isset($_POST['updateProduct'])){
+ $pId=$_POST['proId'];
+ $proName = $_POST["proName"];
+    $proPrice = $_POST["proPrice"];
+      $proQuantity = $_POST["proQuantity"];
+        $ProCatId = $_POST["ProCatId"];
+       
+ $proImageName = $_FILES['proImage']['name'];
+  if(!empty($proImageName)){
+    
+
+ $proTmpName= $_FILES['proImage']['tmp_name'];
+ $extension = pathinfo($proImageName,PATHINFO_EXTENSION);
+ $designation = "img/product/".$proImageName;
+ if($extension=="jpg" || $extension== "png" || $extension=="jpeg" || $extension =="webp"){
+  if(move_uploaded_file($proTmpName,$designation)){
+    $query = $pdo->prepare('update products set product_name=:pn,product_price =:pp , product_quantity = :pq, product_image =:pi,category_type =:pc where product_id=:prid');
+     $query->bindParam("prid",$pId);
+    $query->bindParam("pn",$proName);
+    $query->bindParam("pp",$proPrice);
+    $query->bindParam("pq",$proQuantity);
+     $query->bindParam("pi",$proImageName);
+     $query->bindParam("pc",$ProCatId);
+     $query->execute();
+    echo "<script>alert('update product with image successfully');
+    location.assign('viewproduct.php')
+    </script>";
+  }
+}
+  }else{
+     $query = $pdo->prepare('update products set product_name=:pn,product_price =:pp , product_quantity = :pq,category_type =:pc where product_id=:prid');
+     $query->bindParam("prid",$pId);
+    $query->bindParam("pn",$proName);
+    $query->bindParam("pp",$proPrice);
+    $query->bindParam("pq",$proQuantity);
+     $query->bindParam("pc",$ProCatId);
+     $query->execute();
+    echo "<script>alert('update product without image successfully');
+    location.assign('viewproduct.php')
+    </script>";
+  }
 }
 ?>
