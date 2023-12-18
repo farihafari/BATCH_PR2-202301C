@@ -159,4 +159,14 @@ if(isset($_POST['updateProduct'])){
     </script>";
   }
 }
+// delete products
+if(isset($_GET['deletePro'])){
+  $deletPro = $_GET['deletePro'];
+  $query = $pdo->prepare("delete from products where product_id =:pid");
+  $query->bindParam("pid",$deletPro);
+  $query->execute();
+  echo "<script>alert('delete product successfully');
+  location.assign('viewproduct.php')
+  </script>";
+}
 ?>

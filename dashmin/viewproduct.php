@@ -34,7 +34,7 @@ FROM `products`
                     <td><?php echo $proAll['cat_name']?></td>
                     <td><a href="updateproduct.php?pId=<?php echo $proAll['product_id']?>"
                             class="btn btn-primary">Edit</a></td>
-                    <td><a href="" class="btn btn-primary">Delete</a></td>
+                    <td><a href="?deletePro=<?php echo $proAll['product_id']?>" class="btn btn-primary">Delete</a></td>
                 </tr>
                 <?php
     }
@@ -48,5 +48,6 @@ FROM `products`
 
 
 <?php
+
 include("footer.php");
 ?>
