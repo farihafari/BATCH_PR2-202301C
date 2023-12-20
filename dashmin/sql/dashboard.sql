@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2023 at 09:05 AM
+-- Generation Time: Dec 20, 2023 at 09:12 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -38,8 +38,10 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `cat_name`, `cat_image`) VALUES
-(1, 'computer', 'contacltences4.png'),
-(2, 'Bags', '1.png');
+(2, 'Bags', 'download.jpg'),
+(3, 'shoes', 'shoes.jpg'),
+(4, 'glasses', 'glasses.jpg'),
+(5, 'dresses', 'download (17).jpg');
 
 -- --------------------------------------------------------
 
@@ -61,7 +63,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `product_quantity`, `product_price`, `product_image`, `category_type`) VALUES
-(1, 'juccie', '5', '2500', 'gucci11.png', 1);
+(2, 'shoes', '5', '3000', 'shoes.jpg', 2),
+(4, 'eyep protection glasses', '6', '2500', 'download (14).jpg', 4),
+(5, 'transparent glasses', '8', '650', 'download (12).jpg', 4),
+(6, 'new  bags', '5', '5500', 'download (2).jpg', 2),
+(7, 'nike', '6', '5200', 'pexels-photo-5730956.jpeg', 3),
+(8, 'hand bags', '9', '3500', 'pexels-photo-634538.jpeg', 2);
 
 -- --------------------------------------------------------
 
@@ -117,13 +124,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -139,7 +146,8 @@ ALTER TABLE `users`
 -- Constraints for table `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_type`) REFERENCES `category` (`id`);
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_type`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`category_type`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
