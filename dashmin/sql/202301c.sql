@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2023 at 09:12 AM
+-- Generation Time: Jan 01, 2024 at 08:58 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dashboard`
+-- Database: `202301c`
 --
 
 -- --------------------------------------------------------
@@ -42,6 +42,24 @@ INSERT INTO `category` (`id`, `cat_name`, `cat_image`) VALUES
 (3, 'shoes', 'shoes.jpg'),
 (4, 'glasses', 'glasses.jpg'),
 (5, 'dresses', 'download (17).jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `orderId` int(11) NOT NULL,
+  `productId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `productName` varchar(255) NOT NULL,
+  `productPrice` int(11) NOT NULL,
+  `productQuantity` int(11) NOT NULL,
+  `userAddress` varchar(500) NOT NULL,
+  `userPhone` varchar(50) NOT NULL,
+  `orderPlaceDate` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -104,6 +122,12 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`orderId`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -125,6 +149,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`

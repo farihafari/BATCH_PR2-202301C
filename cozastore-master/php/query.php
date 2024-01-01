@@ -29,4 +29,18 @@ if(in_array($_POST['proId'],$productId)){
         </script>";
     }
 }
+// remove item
+if(isset($_GET['removeId'])){
+    $removeId= $_GET['removeId'];
+foreach($_SESSION['cart'] as $key => $value){
+if($removeId == $value['pId']){
+    unset($_SESSION['cart'][$key]);
+    $_SESSION['cart']=array_values($_SESSION['cart']);
+    echo "<script>
+        alert('product delete from cart');
+        location.assign('shoping-cart.php')
+        </script>";
+}
+}
+}
 ?>

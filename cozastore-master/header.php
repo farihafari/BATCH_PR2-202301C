@@ -108,6 +108,9 @@ include("php/query.php");
                             <li>
                                 <a href="contact.html">Contact</a>
                             </li>
+                            <li>
+                                <a href="login.php">login</a>
+                            </li>
                         </ul>
                     </div>
 
