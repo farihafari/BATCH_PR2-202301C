@@ -108,9 +108,25 @@ include("php/query.php");
                             <li>
                                 <a href="contact.html">Contact</a>
                             </li>
+                            <?php
+                            if(isset($_SESSION['userEmail'])){
+                                ?>
+                                   <li>
+                                <a href="logout.php">log out</a>
+                            </li>
                             <li>
+                                <a href="order.php">order</a>
+                            </li>
+                                <?php
+                            }else{
+                               ?>
+                                     <li>
                                 <a href="login.php">login</a>
                             </li>
+                               <?php 
+                            }
+                            ?>
+                      
                         </ul>
                     </div>
 

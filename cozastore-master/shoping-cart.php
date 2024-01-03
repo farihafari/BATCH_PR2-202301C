@@ -125,7 +125,7 @@ foreach($_SESSION['cart'] as $key => $val){
                      <?php 
                      if(isset($_SESSION['userEmail'])){
                       ?>
-                      <a href=""class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">   Proceed to Checkout</a>
+                      <a href="checkout.php"class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">   Proceed to Checkout</a>
                       <?php  
                      }else{
                         ?>

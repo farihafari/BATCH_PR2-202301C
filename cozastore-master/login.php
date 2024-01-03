@@ -27,7 +27,7 @@
 							Submit
 						</button>
 					</form>
-		<p>don't have anyone account! <a href="sigup.php">sign up</a></p>
+		<p>don't have anyone account! <a href="signup.php">sign up</a></p>
 
 			
 			</div>
