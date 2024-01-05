@@ -79,6 +79,7 @@ if($userDetail){
 // cart
 if(isset($_POST['checkOut'])){
 $userId = $_SESSION['userId'];
+$userEmail = $_SESSION['userEmail'];
 $userAddress = $_POST['address'];
 $userNumber = $_POST['number'];
 foreach($_SESSION['cart'] as $key => $values){
@@ -101,5 +102,6 @@ foreach($_SESSION['cart'] as $key => $values){
 echo "<script>alert('order place successfuuly');
 location.assign('index.php')
 </script>";
+
 }
 ?>
