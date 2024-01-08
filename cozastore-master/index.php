@@ -329,6 +329,7 @@ foreach($catFilterData  as $filterCategory){
 
                                 <a href="#" class="filter-link stext-106 trans-04">
                                     Red
+                                    
                                 </a>
                             </li>
 
