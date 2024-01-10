@@ -147,5 +147,11 @@ if(isset($_POST['search'])){
   
             <?php }
 }
+if(isset($_POST['reviews'])){
+    $name=$_SESSION['userName'];
+    $email=$_POST['userEmail'];
+    $reviews=$_POST['reviews'];
+    $query = $pdo->prepare("insert into reviews (userfeedback)");
+}
             ?>
 

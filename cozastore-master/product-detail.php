@@ -1,5 +1,6 @@
 <?php
 include("header.php");
+
 ?>
 <!-- breadcrumb -->
 <div class="container m-t-100">
@@ -327,7 +328,8 @@ if(isset($_GET['pId'])){
                                     </div>
 
                                     <!-- Add review -->
-                                    <form class="w-full">
+                                    <form class="w-full" method="post">
+                                        <input type="hidden" name="porductId" value="<?php echo $productRow['product_id']?>">
                                         <h5 class="mtext-108 cl2 p-b-7">
                                             Add a review
                                         </h5>
@@ -361,20 +363,29 @@ if(isset($_GET['pId'])){
                                             <div class="col-sm-6 p-b-5">
                                                 <label class="stext-102 cl3" for="name">Name</label>
                                                 <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text"
-                                                    name="name">
+                                                    name="name" value="<?php if(isset($_SESSION['userName'])){ echo $_SESSION['userName'];}?>">
                                             </div>
 
                                             <div class="col-sm-6 p-b-5">
                                                 <label class="stext-102 cl3" for="email">Email</label>
                                                 <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email"
-                                                    type="text" name="email">
+                                                    type="text" name="email"  value="<?php if(isset($_SESSION['userEmail'])){ echo $_SESSION['userEmail'];}?>">
                                             </div>
                                         </div>
-
-                                        <button
-                                            class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-                                            Submit
+<?php
+if(!isset($_SESSION['userName'])){
+?>
+<a href="login.php"  class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">Submit</a>
+<?php
+}else{
+    ?>
+      <button type="submit" name="reviews" class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
+                                        Submit
                                         </button>
+    <?php
+}
+?>
+                                      
                                     </form>
                                 </div>
                             </div>
