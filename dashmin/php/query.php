@@ -169,4 +169,71 @@ if(isset($_GET['deletePro'])){
   location.assign('viewproduct.php')
   </script>";
 }
+// download data in excel format
+
+if (isset($_POST['data'])) {
+
+    $data = json_decode($_POST['data'], true);
+
+ // Get start and end dates from the form
+ $start_date = isset($_POST['start_date']) ? $_POST['start_date'] : null;
+ $end_date = isset($_POST['end_date']) ? $_POST['end_date'] : null;
+  // for getting data from user
+if($start_date &&  $end_date ){
+  $query = $pdo->prepare("select * from orders where mydate BETWEEN :startDate AND :endDate");
+  $query->bindParam("startDate",$start_date);
+  $query->bindParam("endDate",$end_date);
+  $query ->execute();
+  
+  $data = $query->fetchAll(PDO::FETCH_ASSOC);
+  if($data){
+ // Function to convert array to CSV
+ function convertToCSV($data) {
+   
+  $output = fopen('php://output', 'w');
+// Output CSV header
+if (!empty($data)) {
+  fputcsv($output, array_keys($data[0]));
+}
+  foreach ($data as $row) {
+      fputcsv($output, $row);
+  }
+
+  fclose($output);
+}
+
+// Output the CSV file
+header('Content-Type: text/csv');
+header('Content-Disposition: attachment; filename="user_details.csv"');
+
+convertToCSV($data);
+exit();
+  }else{
+    
+    // Function to convert array to CSV
+    function convertToCSV($data) {
+   
+      $output = fopen('php://output', 'w');
+// Output CSV header
+fputcsv($output, array_keys($data[0]));
+      foreach ($data as $row) {
+          fputcsv($output, $row);
+      }
+
+      fclose($output);
+  }
+
+  // Output the CSV file
+  header('Content-Type: text/csv');
+  header('Content-Disposition: attachment; filename="user_details.csv"');
+  
+  convertToCSV($data);
+  exit();
+}
+  }
+ 
+ 
+}
+
+
 ?>
