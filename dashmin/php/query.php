@@ -208,6 +208,7 @@ header('Content-Disposition: attachment; filename="user_details.csv"');
 
 convertToCSV($data);
 exit();
+  }
   }else{
     
     // Function to convert array to CSV
@@ -230,7 +231,6 @@ fputcsv($output, array_keys($data[0]));
   convertToCSV($data);
   exit();
 }
-  }
  
  
 }
