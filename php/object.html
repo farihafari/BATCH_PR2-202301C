@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>name</th>
+            <th>price</th>
+            <th>image</th>
+        </tr>
+        <tbody id="data">
+           
+        </tbody>
+    </table>
+    <!-- <p id="demo"></p> -->
+</body>
+</html>
+
+
+<script>
+    let obj ={
+        inifinix:[
+            {
+                name:"inifinix",
+                price:467364,
+                imgae:"img/i.jpg"
+            },
+            {
+                name:"inifinix 11",
+                price:467364,
+                imgae:"img/i.jpg"
+            },
+        ],
+        vivo:[
+            {
+                name:"vivo",
+                price:467364,
+                imgae:"img/i.jpg" 
+            }
+        ]
+
+    }
+    // document.h1
+    // demo.innerHTML="hello";
+    let data = document.querySelector("#data");
+
+    console.log(obj.inifinix[0].name)
+    for(let keys in obj){
+        // console.log(keys)
+        for(i=0;i<obj[keys].length;i++){
+            // console.log(obj[keys][i].name);
+            let x ="<tr><td>"+obj[keys][i].name+"</td><td>"+obj[keys][i].price+"</td><td>"+obj[keys][i].imgae+"</td></tr>";
+            data.innerHTML+=x;
+        }
+
+
+    }
+</script>

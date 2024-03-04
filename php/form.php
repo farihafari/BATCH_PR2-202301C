@@ -2,7 +2,7 @@
 include("header.php");
 ?>
 <div class="container">
-    <form action="" method="post">
+    <form action="form.php" method="post">
         <div class="mb-3">
             <label for="" class="form-label">name</label>
             <input type="text" class="form-control" name="uname" id="" aria-describedby="emailHelpId">

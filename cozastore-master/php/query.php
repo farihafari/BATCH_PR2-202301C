@@ -78,25 +78,39 @@ if($userDetail){
 }
 // cart
 if(isset($_POST['checkOut'])){
+date_default_timezone_set("Asia/Karachi");
+    $now = time(); // get current unix timeStamp
+    $dateTimeString = date('Y-m-d H:i:s',$now);//converts the Unix timestamp to a more readable format.
+    $time = date('H:i:s',strtotime($dateTimeString));
 $userId = $_SESSION['userId'];
+$userName=$_SESSION['userName'];
 $userEmail = $_SESSION['userEmail'];
 $userAddress = $_POST['address'];
 $userNumber = $_POST['number'];
+$totalAmount = 0;
+$productQtyCount=0;
 foreach($_SESSION['cart'] as $key => $values){
+
+    $productQtyCount = $value['pQuantity'];
+
     $productId = $values['pId'];
     $productName = $values['pName'];
     $productPrice = $values['pPrice'];
     $productQuantity = $values['pQuantity'];
-    $query= $pdo ->prepare("insert into orders (productId,userId,productName,productPrice,productQuantity,userAddress,userPhone) values(:pid,:uid,:pn,:pp,:pq,:ua,:up)");
+    $query= $pdo ->prepare("insert into orders (productId,userId,userName,productName,productPrice,productQuantity,userAddress,userPhone,mydate,time) values(:pid,:uid,:un,:pn,:pp,:pq,:ua,:up,:mdate,:mtime)");
     $query->bindParam("pid",$productId);
     $query->bindParam("uid",$userId);
+    $query->bindParam("un",$userName);
     $query->bindParam("pn",$productName);
     $query->bindParam("pp",$productPrice);
     $query->bindParam("pq",$productQuantity);
     $query->bindParam("ua",$userAddress);
     $query->bindParam("up",$userNumber);
+    $query->bindParam("mdate",$dateTimeString);
+    $query->bindParam("mtime",$time);
+    
     $query ->execute();
-    unset($_SESSION['cart']);
+    // unset($_SESSION['cart']);
   
 }
 echo "<script>alert('order place successfuuly');

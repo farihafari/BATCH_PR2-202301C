@@ -18,7 +18,7 @@ include('header.php')
             </thead>
             <tbody>
             <?php
-$query = $pdo->query("select * from orders");
+$query = $pdo->query("select * from orders group by ");
 $row = $query->fetchAll(PDO::FETCH_ASSOC);
 foreach($row as  $value) {
     ?>
