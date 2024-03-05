@@ -87,11 +87,10 @@ $userName=$_SESSION['userName'];
 $userEmail = $_SESSION['userEmail'];
 $userAddress = $_POST['address'];
 $userNumber = $_POST['number'];
-$totalAmount = 0;
-$productQtyCount=0;
+
+
 foreach($_SESSION['cart'] as $key => $values){
 
-    $productQtyCount = $value['pQuantity'];
 
     $productId = $values['pId'];
     $productName = $values['pName'];
@@ -108,15 +107,33 @@ foreach($_SESSION['cart'] as $key => $values){
     $query->bindParam("up",$userNumber);
     $query->bindParam("mdate",$dateTimeString);
     $query->bindParam("mtime",$time);
-    
     $query ->execute();
     // unset($_SESSION['cart']);
   
 }
+
+$invoiceQuery = $pdo ->prepare("INSERT INTO `invoice`(`userId`, `userName`, `userEmail`, `productCount`, `productAmount`, `date`, `time`) VALUES (:userId,:userName,:userEmail,:productCount,:productPrice,:date,:time)");
+$invoiceQuery ->bindParam("userId",$userId);
+$invoiceQuery ->bindParam("userName",$userName);
+$invoiceQuery ->bindParam("userEmail",$userEmail);
+$invoiceQuery ->bindParam("date",$dateTimeString);
+$invoiceQuery ->bindParam("time",$time);
+$totalAmount = 0;
+$productQtyCount=0;
+foreach($_SESSION['cart'] as $keys =>$keyVal){
+    $totalAmount+=$keyVal['pQuantity']*$keyVal['pPrice'];
+    $productQtyCount += $keyVal['pQuantity'];
+    $invoiceQuery ->bindParam("productCount",$productQtyCount);
+    $invoiceQuery ->bindParam("productPrice",$totalAmount);
+
+}
+
+$invoiceQuery->execute();
+unset($_SESSION['cart']);
+// print_r($invoiceQuery);
 echo "<script>alert('order place successfuuly');
 location.assign('index.php')
 </script>";
-
 }
 if(isset($_POST['search'])){
     $search =$_POST['search'];
